@@ -18,4 +18,21 @@ Don't forget to use Chrome DevTools to debug!
 
 */
 
+const dataset = element => {
+  //following const contains datasets
+  const openingTag = element.split('>')[0];
+  // grab all matches for regex with data-something
+  tagData = openingTag.match(/data-\w+="\w+"/g);
 
+}
+
+
+
+const burger = `<div class="card" data-id="42" data-price="15" data-category="popular">
+<div class="card-category">Popular</div>
+<div class="card-description">
+    <h2>The best burger in town (15€)</h2>
+</div>
+</div>`;
+
+console.log(dataset(burger));
