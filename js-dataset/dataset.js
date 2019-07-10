@@ -21,10 +21,25 @@ Don't forget to use Chrome DevTools to debug!
 const dataset = element => {
   //following const contains datasets
   const openingTag = element.split('>')[0];
-  // grab all matches for regex with data-something
+  // tagData has all occurrences of data-something
   tagData = openingTag.match(/data-\w+="\w+"/g);
+  // console.log(tagData);
+  const dataAttributes = {};
+  let attrArr = [];
 
-}
+  tagData.forEach(dataItem => {
+    const matchData = dataItem.match(/data-(.+)="(.+)"/);
+    // console.log(matchData[1]);
+    //  check if value a number (decimal or integer) or text and treat appropriately
+    // can refactor:
+    if (isNaN(matchData[2])) {
+      dataAttributes[matchData[1]] = matchData[2];
+    } else {
+      dataAttributes[matchData[1]] = Number(matchData[2]);
+    }
+  });
+  return dataAttributes;
+};
 
 
 
